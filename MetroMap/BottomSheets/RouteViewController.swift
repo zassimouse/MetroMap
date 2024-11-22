@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BottomSheetViewController: UIViewController {
+class RouteViewController: UIViewController {
     private let originView = OriginDestinationView()
     private let destinationView = OriginDestinationView()
     private let swapImageView = UIImageView()

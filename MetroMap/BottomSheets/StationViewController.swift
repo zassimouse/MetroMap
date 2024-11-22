@@ -80,16 +80,17 @@ class StationViewController: UIViewController {
         view.backgroundColor = .systemBackground
         view.addSubview(lineLogoView)
         view.addSubview(label)
-        view.addSubview(stackView)
+//        view.addSubview(stackView)
 
         
-        stackView.addArrangedSubview(nextTrainLabel1)
-        stackView.addArrangedSubview(nextTrainLabel2)
-        stackView.addArrangedSubview(workingHoursLabel)
-
+//        stackView.addArrangedSubview(nextTrainLabel1)
+//        stackView.addArrangedSubview(nextTrainLabel2)
+//        stackView.addArrangedSubview(workingHoursLabel)
+//
         view.addSubview(fromButton)
         view.addSubview(toButton)
         
+        fromButton.addTarget(self, action: #selector(close), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             lineLogoView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
@@ -101,18 +102,22 @@ class StationViewController: UIViewController {
             label.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
             label.heightAnchor.constraint(equalToConstant: 36),
             
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            stackView.topAnchor.constraint(equalTo: lineLogoView.bottomAnchor, constant: 20),
+//            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+//            stackView.topAnchor.constraint(equalTo: lineLogoView.bottomAnchor, constant: 20),
             
             fromButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            fromButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 20),
-            fromButton.heightAnchor.constraint(equalToConstant: 36),
+            fromButton.topAnchor.constraint(equalTo: lineLogoView.bottomAnchor, constant: 20),
+            fromButton.heightAnchor.constraint(equalToConstant: 44),
             fromButton.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -2),
             
             toButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            toButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 20),
-            toButton.heightAnchor.constraint(equalToConstant: 36),
+            toButton.topAnchor.constraint(equalTo: lineLogoView.bottomAnchor, constant: 20),
+            toButton.heightAnchor.constraint(equalToConstant: 44),
             toButton.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 2),
         ])
+    }
+    
+    @objc func close() {
+        dismiss(animated: true)
     }
 }

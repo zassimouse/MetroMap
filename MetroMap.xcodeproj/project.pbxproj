@@ -45,8 +45,8 @@
 		68FF8F722CED1C7F000D72E4 = {
 			isa = PBXGroup;
 			children = (
-				68FF8F7D2CED1C7F000D72E4 /* MetroMap */,
 				68FF8F7C2CED1C7F000D72E4 /* Products */,
+				68FF8F7D2CED1C7F000D72E4 /* MetroMap */,
 			);
 			sourceTree = "<group>";
 		};

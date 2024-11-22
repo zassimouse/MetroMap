@@ -7,31 +7,27 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIScrollViewDelegate {
+class ViewController: UIViewController, UIScrollViewDelegate, MetroMapViewDelegate {
     
+    func didSelectStation(_ sender: MetroMapView) {
+        showStationSheet()
+    }
     
     private var scrollView: UIScrollView!
-    private var mapView = MetroMapView(frame: CGRect(origin: .zero, size: CGSize(width: 2000, height: 2000)))
+    private var mapView = MetroMapView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         scrollView = UIScrollView()
+        scrollView.backgroundColor = .systemBackground
         scrollView.delegate = self
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.maximumZoomScale = 2.0
         scrollView.minimumZoomScale = 1.0
-
         scrollView.isUserInteractionEnabled = true
         
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(scrollView)
-        
-        scrollView.addSubview(mapView)
-        
-        scrollView.contentSize = mapView.bounds.size
-
-        
-        // Set constraints for scrollView
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -39,18 +35,19 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
-        // Set constraints for mapView
+        mapView.delegate = self
+        mapView.contentMode = .redraw
+        mapView.backgroundColor = .systemBackground
+        
         mapView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(mapView)
         NSLayoutConstraint.activate([
             mapView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             mapView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             mapView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             mapView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
         ])
-        
-        mapView.contentMode = .redraw
-        
-        mapView.backgroundColor = .systemBackground
+         
     }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
@@ -63,7 +60,15 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        showRouteSheet()
+    }
+}
 
+
+extension ViewController {
+    func showStationSheet() {
+        dismiss(animated: true)
+        
         let controller = StationViewController()
         
         if let sheetController = controller.sheetPresentationController {
@@ -71,13 +76,35 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             let smallDetent = UISheetPresentationController.Detent.custom(
                 identifier: UISheetPresentationController.Detent.Identifier("smallDetent"),
                 resolver: { _ in
-                    return 220 - self.view.safeAreaInsets.bottom
+                    return 150 - self.view.safeAreaInsets.bottom
                 }
             )
             
-            sheetController.detents = [smallDetent] // Apply the custom detent
-            sheetController.prefersGrabberVisible = true // Show the grabber
-            sheetController.largestUndimmedDetentIdentifier = UISheetPresentationController.Detent.Identifier("smallDetent") // Prevent background dimming
+            sheetController.detents = [smallDetent]
+            sheetController.prefersGrabberVisible = true
+            sheetController.largestUndimmedDetentIdentifier = UISheetPresentationController.Detent.Identifier("smallDetent")
+            
+            controller.isModalInPresentation = true
+        }
+        
+        present(controller, animated: true)
+    }
+    
+    func showRouteSheet() {
+        let controller = RouteViewController()
+        
+        if let sheetController = controller.sheetPresentationController {
+            
+            let smallDetent = UISheetPresentationController.Detent.custom(
+                identifier: UISheetPresentationController.Detent.Identifier("smallDetent"),
+                resolver: { _ in
+                    return 100 - self.view.safeAreaInsets.bottom
+                }
+            )
+            
+            sheetController.detents = [smallDetent]
+            sheetController.prefersGrabberVisible = true
+            sheetController.largestUndimmedDetentIdentifier = UISheetPresentationController.Detent.Identifier("smallDetent")
             
             controller.isModalInPresentation = true
         }

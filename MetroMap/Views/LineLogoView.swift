@@ -12,7 +12,7 @@ class LineLogoView: UIView {
     private let label: UILabel = {
         let label = UILabel()
         label.text = "1"
-        label.font = .systemFont(ofSize: 20)
+        label.font = .boldSystemFont(ofSize: 20)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -21,7 +21,7 @@ class LineLogoView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(label)
-        backgroundColor = .blue
+        backgroundColor = .metroBlue
         self.layer.cornerRadius = 18
         label.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         label.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true

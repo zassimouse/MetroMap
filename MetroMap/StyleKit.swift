@@ -35,15 +35,16 @@ public class StyleKit : NSObject {
 
     //// Drawing Methods
 
-    @objc dynamic public class func drawCanvas1(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 635, height: 620), resizing: ResizingBehavior = .aspectFit) {
+    @objc dynamic public class func drawCanvas1(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 630, height: 630), resizing: ResizingBehavior = .aspectFit) {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()!
         
         //// Resize to Target Frame
         context.saveGState()
-        let resizedFrame: CGRect = resizing.apply(rect: CGRect(x: 0, y: 0, width: 635, height: 620), target: targetFrame)
+        let resizedFrame: CGRect = resizing.apply(rect: CGRect(x: 0, y: 0, width: 630, height: 630), target: targetFrame)
         context.translateBy(x: resizedFrame.minX, y: resizedFrame.minY)
-        context.scaleBy(x: resizedFrame.width / 635, y: resizedFrame.height / 620)
+        context.scaleBy(x: resizedFrame.width / 630, y: resizedFrame.height / 630)
+        print(resizedFrame)
 
 
         //// Text 2 Drawing
@@ -53,7 +54,7 @@ public class StyleKit : NSObject {
         text2Style.alignment = .left
         let text2FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text2Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -71,7 +72,7 @@ public class StyleKit : NSObject {
         text3Style.alignment = .left
         let text3FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text3Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -89,7 +90,7 @@ public class StyleKit : NSObject {
         text4Style.alignment = .left
         let text4FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text4Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -107,7 +108,7 @@ public class StyleKit : NSObject {
         text5Style.alignment = .left
         let text5FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text5Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -125,7 +126,7 @@ public class StyleKit : NSObject {
         text9Style.alignment = .left
         let text9FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text9Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -143,7 +144,7 @@ public class StyleKit : NSObject {
         text8Style.alignment = .left
         let text8FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text8Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -161,7 +162,7 @@ public class StyleKit : NSObject {
         text10Style.alignment = .left
         let text10FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text10Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -179,7 +180,7 @@ public class StyleKit : NSObject {
         text15Style.alignment = .left
         let text15FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text15Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -197,7 +198,7 @@ public class StyleKit : NSObject {
         text11Style.alignment = .left
         let text11FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text11Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -215,7 +216,7 @@ public class StyleKit : NSObject {
         text12Style.alignment = .left
         let text12FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text12Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -242,7 +243,7 @@ public class StyleKit : NSObject {
         text6Style.alignment = .left
         let text6FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text6Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -260,7 +261,7 @@ public class StyleKit : NSObject {
         text7Style.alignment = .right
         let text7FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text7Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -278,7 +279,7 @@ public class StyleKit : NSObject {
         text13Style.alignment = .right
         let text13FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text13Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -296,7 +297,7 @@ public class StyleKit : NSObject {
         text14Style.alignment = .left
         let text14FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text14Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -314,7 +315,7 @@ public class StyleKit : NSObject {
         text16Style.alignment = .left
         let text16FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text16Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -332,7 +333,7 @@ public class StyleKit : NSObject {
         text17Style.alignment = .right
         let text17FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text17Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -350,7 +351,7 @@ public class StyleKit : NSObject {
         text18Style.alignment = .right
         let text18FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text18Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -368,7 +369,7 @@ public class StyleKit : NSObject {
         text19Style.alignment = .right
         let text19FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text19Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -386,7 +387,7 @@ public class StyleKit : NSObject {
         text21Style.alignment = .left
         let text21FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text21Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -404,7 +405,7 @@ public class StyleKit : NSObject {
         text22Style.alignment = .left
         let text22FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text22Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -422,7 +423,7 @@ public class StyleKit : NSObject {
         text23Style.alignment = .left
         let text23FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text23Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -440,7 +441,7 @@ public class StyleKit : NSObject {
         text24Style.alignment = .right
         let text24FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text24Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -458,7 +459,7 @@ public class StyleKit : NSObject {
         text25Style.alignment = .right
         let text25FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text25Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -476,7 +477,7 @@ public class StyleKit : NSObject {
         text26Style.alignment = .right
         let text26FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text26Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -494,7 +495,7 @@ public class StyleKit : NSObject {
         text27Style.alignment = .right
         let text27FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text27Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -512,7 +513,7 @@ public class StyleKit : NSObject {
         text28Style.alignment = .right
         let text28FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text28Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -530,7 +531,7 @@ public class StyleKit : NSObject {
         text29Style.alignment = .right
         let text29FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text29Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -548,7 +549,7 @@ public class StyleKit : NSObject {
         text30Style.alignment = .left
         let text30FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text30Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -566,7 +567,7 @@ public class StyleKit : NSObject {
         text31Style.alignment = .left
         let text31FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text31Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -584,7 +585,7 @@ public class StyleKit : NSObject {
         text32Style.alignment = .left
         let text32FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text32Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -602,7 +603,7 @@ public class StyleKit : NSObject {
         text33Style.alignment = .left
         let text33FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text33Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -1056,7 +1057,7 @@ public class StyleKit : NSObject {
         text20Style.alignment = .right
         let text20FontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: text20Style,
         ] as [NSAttributedString.Key: Any]
 
@@ -1074,7 +1075,7 @@ public class StyleKit : NSObject {
         textStyle.alignment = .right
         let textFontAttributes = [
             .font: UIFont.boldSystemFont(ofSize: UIFont.smallSystemFontSize),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
             .paragraphStyle: textStyle,
         ] as [NSAttributedString.Key: Any]
 
