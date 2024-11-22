@@ -17,9 +17,9 @@ class MetroMapView: UIView {
         super.init(frame: frame)
 
         if let tiledLayer = self.layer as? CATiledLayer {
-            tiledLayer.levelsOfDetail = 3 // Number of zoom-out levels
-            tiledLayer.levelsOfDetailBias = 2 // Number of zoom-in levels
-            tiledLayer.tileSize = CGSize(width: 500, height: 500) // Tile size
+            tiledLayer.levelsOfDetail = 3
+            tiledLayer.levelsOfDetailBias = 2
+            tiledLayer.tileSize = CGSize(width: 500, height: 500)
         }
         self.backgroundColor = .systemBackground
     }
