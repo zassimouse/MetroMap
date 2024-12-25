@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		68FF8F7B2CED1C7F000D72E4 /* MetroMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetroMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		68AB112C2CFF163E0052F62C /* MetroMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetroMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -45,17 +45,9 @@
 		68FF8F722CED1C7F000D72E4 = {
 			isa = PBXGroup;
 			children = (
-				68FF8F7C2CED1C7F000D72E4 /* Products */,
 				68FF8F7D2CED1C7F000D72E4 /* MetroMap */,
+				68AB112C2CFF163E0052F62C /* MetroMap.app */,
 			);
-			sourceTree = "<group>";
-		};
-		68FF8F7C2CED1C7F000D72E4 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				68FF8F7B2CED1C7F000D72E4 /* MetroMap.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -80,7 +72,7 @@
 			packageProductDependencies = (
 			);
 			productName = MetroMap;
-			productReference = 68FF8F7B2CED1C7F000D72E4 /* MetroMap.app */;
+			productReference = 68AB112C2CFF163E0052F62C /* MetroMap.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -108,7 +100,7 @@
 			mainGroup = 68FF8F722CED1C7F000D72E4;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 68FF8F7C2CED1C7F000D72E4 /* Products */;
+			productRefGroup = 68FF8F722CED1C7F000D72E4;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (

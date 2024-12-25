@@ -7,10 +7,13 @@
 
 import UIKit
 
-protocol MetroMapViewDelegate: AnyObject {
-    func didSelectStation(_ sender: MetroMapView)
-}
+//protocol MetroMapViewDelegate: AnyObject {
+//    func didSelectStation(_ sender: MetroMapView)
+//}
 
+protocol MetroMapViewDelegate: AnyObject {
+    func didSelectStation(_ station: Int)
+}
 
 class MetroMapView: UIView {
     
@@ -96,7 +99,7 @@ class MetroMapView: UIView {
         
         if text2Rect.contains(CGPoint(x: tapLocation.x / scaleFactor, y: adjustedTapY)) {
             print("Text 'Kamennaja Gorka' tapped!")
-            delegate?.didSelectStation(self)
+            delegate?.didSelectStation(220)
         } else {
             print("Tap missed: \(tapLocation)")
         }

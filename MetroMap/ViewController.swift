@@ -9,13 +9,15 @@ import UIKit
 
 class ViewController: UIViewController, UIScrollViewDelegate, MetroMapViewDelegate {
     
-    func didSelectStation(_ sender: MetroMapView) {
-        showStationSheet()
+    private let metroNetwork = MetroNetwork()
+    
+    func didSelectStation(_ station: Int) {
+        print("tapped \(station)")
     }
     
     private var scrollView: UIScrollView!
     private var mapView = MetroMapView()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,17 +49,17 @@ class ViewController: UIViewController, UIScrollViewDelegate, MetroMapViewDelega
             mapView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             mapView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
         ])
-         
+        
     }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return mapView
     }
-
+    
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
         mapView.setNeedsDisplay()
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         showRouteSheet()
@@ -66,46 +68,30 @@ class ViewController: UIViewController, UIScrollViewDelegate, MetroMapViewDelega
 
 
 extension ViewController {
-    func showStationSheet() {
-        dismiss(animated: true)
-        
-        let controller = StationViewController()
-        
-        if let sheetController = controller.sheetPresentationController {
-            
-            let smallDetent = UISheetPresentationController.Detent.custom(
-                identifier: UISheetPresentationController.Detent.Identifier("smallDetent"),
-                resolver: { _ in
-                    return 150 - self.view.safeAreaInsets.bottom
-                }
-            )
-            
-            sheetController.detents = [smallDetent]
-            sheetController.prefersGrabberVisible = true
-            sheetController.largestUndimmedDetentIdentifier = UISheetPresentationController.Detent.Identifier("smallDetent")
-            
-            controller.isModalInPresentation = true
-        }
-        
-        present(controller, animated: true)
-    }
     
     func showRouteSheet() {
-        let controller = RouteViewController()
+        let controller = BottomSheetViewController()
         
         if let sheetController = controller.sheetPresentationController {
             
             let smallDetent = UISheetPresentationController.Detent.custom(
-                identifier: UISheetPresentationController.Detent.Identifier("smallDetent"),
+                identifier: .init("smallDetent"),
                 resolver: { _ in
-                    return 100 - self.view.safeAreaInsets.bottom
+                    return 120 - self.view.safeAreaInsets.bottom
                 }
             )
             
-            sheetController.detents = [smallDetent]
-            sheetController.prefersGrabberVisible = true
-            sheetController.largestUndimmedDetentIdentifier = UISheetPresentationController.Detent.Identifier("smallDetent")
+            let largeDetent = UISheetPresentationController.Detent.custom(
+                identifier: UISheetPresentationController.Detent.Identifier("largeDetent"),
+                resolver: { _ in
+                    return self.view.frame.height - self.view.safeAreaInsets.bottom - self.view.safeAreaInsets.top - 50
+                }
+            )
             
+            sheetController.detents = [smallDetent, largeDetent, .large()]
+            
+            sheetController.prefersGrabberVisible = true 
+            sheetController.largestUndimmedDetentIdentifier = .init("largeDetent")
             controller.isModalInPresentation = true
         }
         
