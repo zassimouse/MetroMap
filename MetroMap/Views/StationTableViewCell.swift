@@ -41,7 +41,7 @@ class StationTableViewCell: UITableViewCell {
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
             
-            lineLogoView.widthAnchor.constraint(equalToConstant: 30),
+            lineLogoView.widthAnchor.constraint(equalToConstant: 40),
             lineLogoView.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
@@ -51,7 +51,7 @@ class StationTableViewCell: UITableViewCell {
     }
     
     func configure(with station: MetroStation) {
-        lineLogoView.configure(with: station.line)
+        lineLogoView.configure(with: station)
         stationNameLabel.text = station.name
     }
 }

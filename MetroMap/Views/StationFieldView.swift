@@ -7,11 +7,26 @@
 
 import UIKit
 
+protocol StationFieldViewDelegate: AnyObject {
+    func clearOrigin()
+    func clearDestination()
+}
+
 class StationFieldView: UIView {
+    // MARK: - Properties
+    weak var delegate: StationFieldViewDelegate?
+    private var isDestination: Bool = false
+    private var placeholder: String {
+        if isDestination {
+            return "To"
+        } else {
+            return "From"
+        }
+    }
     
+    // MARK: - Subviews
     private let label: UILabel = {
         let label = UILabel()
-        label.text = "From"
         label.textColor = .secondaryLabel
         label.font = .systemFont(ofSize: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -28,11 +43,21 @@ class StationFieldView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
+    // MARK: - Lifecycle
+    init(isDestination: Bool) {
+        super.init(frame: .zero)
+        self.isDestination = isDestination
+        label.text = placeholder
+        setupUI()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - SetupUI
+    func setupUI() {
         self.backgroundColor = .systemGray5
         self.layer.cornerRadius = 8
         
@@ -43,6 +68,7 @@ class StationFieldView: UIView {
         NSLayoutConstraint.activate([
             label.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             label.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor, constant: -25),
             
             clearButton.widthAnchor.constraint(equalToConstant: 20),
             clearButton.heightAnchor.constraint(equalToConstant: 20),
@@ -53,19 +79,24 @@ class StationFieldView: UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+    // MARK: - Methods
     func setStation(_ station: MetroStation) {
         label.text = station.name
         label.textColor = .label
         clearButton.isHidden = false
     }
     
+    // MARK: - Selectors
     @objc func clearStation() {
-        label.text = "From"
+        print("Field View(clearStation): Clear station")
+        label.text = placeholder
         label.textColor = .secondaryLabel
         clearButton.isHidden = true
+        
+        if isDestination {
+            delegate?.clearDestination()
+        } else {
+            delegate?.clearOrigin()
+        }
     }
 }

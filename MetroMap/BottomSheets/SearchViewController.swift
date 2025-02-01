@@ -7,7 +7,20 @@
 
 import UIKit
 
+protocol SearchViewControllerDelegate: AnyObject {
+    func originSelected(_ station: MetroStation)
+    func destinationSelected(_ station: MetroStation)
+}
+
 class SearchViewController: UIViewController {
+    
+    weak var delegate: SearchViewControllerDelegate?
+    
+    private var isDestination = false
+    
+    public func configure(with isDestination: Bool) {
+        self.isDestination = isDestination
+    }
     
     private var metroNetwork = MetroNetwork()
     
@@ -31,6 +44,7 @@ class SearchViewController: UIViewController {
     private let doneButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Done", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
         return button
@@ -64,13 +78,21 @@ class SearchViewController: UIViewController {
         MetroStation(number: 3, name: "Station 3", line: 3, travelTimeToNext: 5)
     ]
     
-    override func viewWillDisappear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(true, animated: true)
+//    override func viewWillDisappear(_ animated: Bool) {
+//        navigationController?.setNavigationBarHidden(true, animated: true)
+//    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if isDestination {
+            title = "Destination"
+        } else {
+            title = "Origin"
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         
         view.backgroundColor = .systemBackground
@@ -86,35 +108,22 @@ class SearchViewController: UIViewController {
         view.addSubview(stackView)
         view.addSubview(tableView)
         
-        // Set the table view's data source and delegate
         tableView.dataSource = self
         tableView.delegate = self
         
-        // Register the custom table view cell
         tableView.register(StationTableViewCell.self, forCellReuseIdentifier: "StationCell")
-//        view.bringSubviewToFront(stackView)
 
         NSLayoutConstraint.activate([
-            // StackView constraints
             stackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
             stackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
-//            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
             stackView.heightAnchor.constraint(equalToConstant: 40),
             
-            // Set the height of the magnifying icon and done button to match the text field's height
             magnifyingIcon.widthAnchor.constraint(equalToConstant: 20),
-            doneButton.widthAnchor.constraint(equalToConstant: 50),
+            doneButton.widthAnchor.constraint(equalToConstant: 60),
             
-            // Optional: Adjust searchField height to match desired value
             searchField.heightAnchor.constraint(equalToConstant: 30),
             
-//            lineView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 10),
-//            lineView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            lineView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            lineView.heightAnchor.constraint(equalToConstant: 0.5),
-            
-            // TableView constraints
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.topAnchor.constraint(equalTo: stackView.bottomAnchor),
@@ -127,31 +136,25 @@ class SearchViewController: UIViewController {
     func configure(with metroNetwork: MetroNetwork) {
         self.metroNetwork = metroNetwork
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        searchField.resignFirstResponder()
+    }
 
     @objc private func textChanged() {
         if let searchText = searchField.text {
-            print("Search text: \(searchText)")
-            
             searchResults = metroNetwork.findStationsByName(searchText)
-            print(searchResults)
-            searchResults.forEach { station in
-                print(station.name)
-            }
             
             tableView.reloadData()
         }
     }
 
-    @objc private func doneButtonTapped() {
-//         Dismiss the keyboard when Done is tapped
+    @objc func doneButtonTapped() {
         searchField.resignFirstResponder()
-        print("button tapped")
-        
     }
 }
 
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
     }
@@ -164,6 +167,13 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // close and call delegate
+        let result = searchResults[indexPath.row]
+        print("RES: \(result.name)")
+        if isDestination {
+            delegate?.destinationSelected(result)
+        } else {
+            delegate?.originSelected(result)
+        }
+        navigationController?.popViewController(animated: true)
     }
 }

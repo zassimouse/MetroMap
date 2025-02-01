@@ -8,12 +8,19 @@
 import Foundation
 
 class MetroNetwork {
+    
+    static var shared = MetroNetwork()
+    
     private var stations: [Int: MetroStation] = [:]
     
     init() {
-        // Hardcode all stations and their connections here
         createStations()
         createConnections()
+    }
+    
+    func getStation(_ number: Int) -> MetroStation? {
+//        print(stations[number] ?? "not found")
+        return stations[number]
     }
     
     // Create all stations

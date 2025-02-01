@@ -11,7 +11,7 @@ class LineLogoView: UIView {
 
     private let label: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 20)
+        label.font = .boldSystemFont(ofSize: 18)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -20,7 +20,7 @@ class LineLogoView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(label)
-        self.layer.cornerRadius = 15
+        self.layer.cornerRadius = 4
         self.layer.masksToBounds = true
         label.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         label.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
@@ -31,9 +31,9 @@ class LineLogoView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with lineNumber: Int) {
-        label.text = "\(lineNumber)"
-        switch lineNumber {
+    func configure(with station: MetroStation) {
+        label.text = "\(station.number)"
+        switch station.line {
         case 1:
             backgroundColor = .metroBlue
         case 2:
